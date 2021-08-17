@@ -19,3 +19,7 @@ OpenTitrator is an Open Source Titrator for everyone.
 # 开源协议
 采用MIT协议。
 
+#Support
+This project has benefited from the support from the following funders:
+DFRobot（www.dfrobot.com)
+Mushroom Cloud Maker Space（www.mushroomcloud.cc）
