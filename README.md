@@ -16,10 +16,10 @@ Near the end of the titration, the concentration of the measured ion has a sudde
 * Adopt Python as the main programming language
 * Open structure drawings
 ## Advantage
-* Controllable cost
-* Strong scalability
-* High ease of use
-* Widely used
+* High-performance, low-cost
+* Easy to source, quick to assemble
+* Lab-ready customisation
+
 ## Application scenario
 * Laboratory automation
 * Dedicated titration
@@ -32,6 +32,9 @@ This project has benefited from the support from the following funders:
 
 * DFRobot（www.dfrobot.com)
 * Mushroom Cloud Maker Space（www.mushroomcloud.cc）
+
+
+
 
 ---
 # 开源滴定仪
