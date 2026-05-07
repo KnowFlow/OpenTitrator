@@ -69,7 +69,24 @@ This project has benefited from the support from the following funders:
 
 ## Quick Start
 
-### Backend
+### One-command launch
+
+```bash
+./start.sh
+```
+
+This script starts both backend and frontend. First run will auto-install dependencies.
+
+| Service | URL |
+|---------|-----|
+| Frontend | http://localhost:5173 |
+| Backend API | http://localhost:8000 |
+| API Docs | http://localhost:8000/docs |
+
+### Start manually
+
+<details>
+<summary>Backend</summary>
 
 ```bash
 cd backend
@@ -77,9 +94,10 @@ pip install -e .
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
-API docs available at http://localhost:8000/docs
+</details>
 
-### Frontend
+<details>
+<summary>Frontend</summary>
 
 ```bash
 cd frontend
@@ -87,7 +105,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:5173
+</details>
 
 ### Configuration
 
@@ -107,7 +125,7 @@ OT_HARDWARE_MODE=real uvicorn app.main:app
 
 ### Language
 
-Click the language toggle button in the top-right corner to switch between English and Chinese.
+点击右上角的语言切换按钮即可在中英文之间切换。
 
 ## 感谢
 该项目得到了以下资助者的支持:
