@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { cardStyle, colors, buttonStyle } from "../../styles/theme";
+import { useLanguage } from "../../i18n/LanguageContext";
 import { moveTo, stopMotor } from "../../api/motor";
 
 interface MotorPageProps {
@@ -9,6 +10,7 @@ interface MotorPageProps {
 
 export function MotorPage({ positionCm, moving }: MotorPageProps) {
   const [target, setTarget] = useState(10.0);
+  const { t } = useLanguage();
 
   const handleMove = useCallback(async () => {
     await moveTo(target);
@@ -22,10 +24,10 @@ export function MotorPage({ positionCm, moving }: MotorPageProps) {
 
   return (
     <div>
-      <h2 style={{ margin: "0 0 16px", color: colors.text }}>Motor Control</h2>
+      <h2 style={{ margin: "0 0 16px", color: colors.text }}>{t("motor_title")}</h2>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
         <div style={cardStyle}>
-          <h3 style={{ margin: "0 0 16px", fontSize: 14, color: colors.textSecondary }}>Current Position</h3>
+          <h3 style={{ margin: "0 0 16px", fontSize: 14, color: colors.textSecondary }}>{t("motor_current_position")}</h3>
           <div style={{ fontSize: 48, fontWeight: 700, textAlign: "center", color: colors.primary, marginBottom: 16 }}>
             {positionCm.toFixed(1)} <span style={{ fontSize: 16 }}>cm</span>
           </div>
@@ -36,12 +38,12 @@ export function MotorPage({ positionCm, moving }: MotorPageProps) {
             <span>2 cm</span><span>19 cm</span>
           </div>
           <div style={{ textAlign: "center", marginTop: 8, fontSize: 13, color: moving ? colors.warning : colors.success }}>
-            {moving ? "MOVING" : "STOPPED"}
+            {moving ? t("motor_moving") : t("motor_stopped")}
           </div>
         </div>
         <div style={cardStyle}>
-          <h3 style={{ margin: "0 0 16px", fontSize: 14, color: colors.textSecondary }}>Move To Position</h3>
-          <label style={{ fontSize: 13, color: colors.textSecondary }}>Target (cm)</label>
+          <h3 style={{ margin: "0 0 16px", fontSize: 14, color: colors.textSecondary }}>{t("motor_move_to")}</h3>
+          <label style={{ fontSize: 13, color: colors.textSecondary }}>{t("motor_target")}</label>
           <input
             type="number"
             min={2}
@@ -52,8 +54,8 @@ export function MotorPage({ positionCm, moving }: MotorPageProps) {
             style={{ width: "100%", padding: 8, borderRadius: 8, border: `1px solid ${colors.border}`, fontSize: 16, marginBottom: 12, boxSizing: "border-box" }}
           />
           <div style={{ display: "flex", gap: 8 }}>
-            <button onClick={handleMove} style={{ ...buttonStyle("primary"), flex: 1 }}>Move</button>
-            <button onClick={handleStop} style={{ ...buttonStyle("danger"), flex: 1 }}>Stop</button>
+            <button onClick={handleMove} style={{ ...buttonStyle("primary"), flex: 1 }}>{t("motor_move")}</button>
+            <button onClick={handleStop} style={{ ...buttonStyle("danger"), flex: 1 }}>{t("motor_stop")}</button>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8, marginTop: 12 }}>
             {[5, 8, 12, 16].map((pos) => (

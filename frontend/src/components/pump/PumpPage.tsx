@@ -1,16 +1,19 @@
 import { useState, useCallback } from "react";
 import { cardStyle, colors } from "../../styles/theme";
+import { useLanguage } from "../../i18n/LanguageContext";
+import type { TranslationKey } from "../../i18n/translations";
 import type { PumpType } from "../../types/pump";
 import { setPumpAngle, dispensePump } from "../../api/pump";
 
-const PUMPS: { id: PumpType; label: string; color: string }[] = [
-  { id: "acid", label: "Acid Pump", color: colors.danger },
-  { id: "alkali", label: "Alkali Pump", color: colors.primary },
-  { id: "test", label: "Test Pump", color: colors.success },
+const PUMPS: { id: PumpType; labelKey: TranslationKey; color: string }[] = [
+  { id: "acid", labelKey: "pump_acid", color: colors.danger },
+  { id: "alkali", labelKey: "pump_alkali", color: colors.primary },
+  { id: "test", labelKey: "pump_test", color: colors.success },
 ];
 
 export function PumpPage() {
   const [angles, setAngles] = useState<Record<string, number>>({ acid: 90, alkali: 90, test: 90 });
+  const { t } = useLanguage();
 
   const handleAngleChange = useCallback(async (pumpId: PumpType, angle: number) => {
     setAngles((prev) => ({ ...prev, [pumpId]: angle }));
@@ -23,11 +26,11 @@ export function PumpPage() {
 
   return (
     <div>
-      <h2 style={{ margin: "0 0 16px", color: colors.text }}>Pump Control</h2>
+      <h2 style={{ margin: "0 0 16px", color: colors.text }}>{t("pump_title")}</h2>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
         {PUMPS.map((pump) => (
           <div key={pump.id} style={cardStyle}>
-            <h3 style={{ margin: "0 0 12px", color: pump.color, fontSize: 16 }}>{pump.label}</h3>
+            <h3 style={{ margin: "0 0 12px", color: pump.color, fontSize: 16 }}>{t(pump.labelKey)}</h3>
             <div style={{ fontSize: 48, fontWeight: 700, textAlign: "center", color: colors.text, marginBottom: 12 }}>
               {angles[pump.id]}°
             </div>
@@ -55,7 +58,7 @@ export function PumpPage() {
                 cursor: "pointer",
               }}
             >
-              Dispense 0.5 mL
+              {t("pump_dispense")} 0.5 {t("pump_unit_ml")}
             </button>
           </div>
         ))}

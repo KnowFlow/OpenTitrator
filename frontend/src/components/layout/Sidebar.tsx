@@ -1,13 +1,15 @@
 import { colors } from "../../styles/theme";
+import { useLanguage } from "../../i18n/LanguageContext";
+import type { TranslationKey } from "../../i18n/translations";
 
-const NAV_ITEMS = [
-  { key: "dashboard", label: "Dashboard" },
-  { key: "sensor", label: "Sensor" },
-  { key: "pump", label: "Pumps" },
-  { key: "motor", label: "Motor" },
-  { key: "titration", label: "Titration" },
-  { key: "experiments", label: "Experiments" },
-  { key: "settings", label: "Settings" },
+const NAV_ITEMS: { key: string; labelKey: TranslationKey }[] = [
+  { key: "dashboard", labelKey: "nav_dashboard" },
+  { key: "sensor", labelKey: "nav_sensor" },
+  { key: "pump", labelKey: "nav_pumps" },
+  { key: "motor", labelKey: "nav_motor" },
+  { key: "titration", labelKey: "nav_titration" },
+  { key: "experiments", labelKey: "nav_experiments" },
+  { key: "settings", labelKey: "nav_settings" },
 ];
 
 interface SidebarProps {
@@ -16,6 +18,8 @@ interface SidebarProps {
 }
 
 export function Sidebar({ activePage, onNavigate }: SidebarProps) {
+  const { t } = useLanguage();
+
   return (
     <nav style={{ width: 200, minHeight: "calc(100vh - 76px)", background: colors.surface, borderRight: `1px solid ${colors.border}`, padding: "12px 0" }}>
       {NAV_ITEMS.map((item) => (
@@ -35,7 +39,7 @@ export function Sidebar({ activePage, onNavigate }: SidebarProps) {
             textAlign: "left",
           }}
         >
-          {item.label}
+          {t(item.labelKey)}
         </button>
       ))}
     </nav>
