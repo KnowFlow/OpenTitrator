@@ -67,6 +67,48 @@ This project has benefited from the support from the following funders:
 ## 开源协议
 采用MIT协议。
 
+## Quick Start
+
+### Backend
+
+```bash
+cd backend
+pip install -e .
+uvicorn app.main:app --host 0.0.0.0 --port 8000
+```
+
+API docs available at http://localhost:8000/docs
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open http://localhost:5173
+
+### Configuration
+
+The system runs in **mock mode** by default (no hardware needed). To use real hardware, set the environment variable:
+
+```bash
+OT_HARDWARE_MODE=real uvicorn app.main:app
+```
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `OT_HARDWARE_MODE` | `mock` | `mock` or `real` |
+| `OT_SENSOR_READ_INTERVAL` | `0.5` | Sensor read interval (seconds) |
+| `OT_DISTANCE_MIN` | `2.0` | Min motor position (cm) |
+| `OT_DISTANCE_MAX` | `19.0` | Max motor position (cm) |
+| `OT_DATABASE_PATH` | `data/opentitrator.db` | SQLite database path |
+
+### Language
+
+Click the language toggle button in the top-right corner to switch between English and Chinese.
+
 ## 感谢
 该项目得到了以下资助者的支持:
 
